@@ -1,0 +1,29 @@
+{% load static %}
+{% if user_is_logged == True%}
+<div class="d-flex justify-content-center gap-4 col">
+    <div class="d-flex">
+      <button class="btn btn-primary" type="button" onclick = "document.location='{% url "ask"%}'"  style="height: 60px; font-size: 20px; ">ASK!</button>
+    </div>
+    <div class="border">
+      <img src = "{% static "pic/avatar_placeholder.jpg" %}" class = "account_img" width = "60" height="60">
+    </div>
+    <div class="d-flex flex-column justify-content-between">
+        <div style="font-size: 20px;">Username</div>
+        <div>
+        <a href="{% url "settings" %}" style="font-size: 18px;">Settings</a>
+        <a href="/logout.html" style="font-size: 18px;">log out</a>
+        </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="d-flex gap-5 col" style="margin-left: 7.5rem;">
+    <div class="d-flex ">
+      <button class="btn btn-primary" type="button" onclick = "document.location='{% url "login"%}'" style="height: 60px; font-size: 20px;">ASK!</button>
+    </div>
+    <div class="align-self-center ">
+        <a href="{% url "login"%}" style="font-size: 20px;">log in</a>
+        <a href="{% url "signup" %}" class="ms-2" style="font-size: 20px;">register</a>
+    </div>
+    
+  </div>
+  {% endif %}

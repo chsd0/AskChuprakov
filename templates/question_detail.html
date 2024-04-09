@@ -1,0 +1,62 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+      {% block content %}
+      <main class="container-fluid container-lg mt-3">
+        
+
+
+        <div class="row gap-4">
+          <div class="col-8">
+            <article class="mb-3 mt-3">
+              <div class="row g-0">
+                <div class="col-4 p-2">
+                  <div class="border mb-3 rounded">
+                      <img src="{% static "pic/question_pic_placeholder.jpg" %}" class="img-fluid rounded" style="flex: auto;">
+                  </div>
+                  <div class="input-group " style="width: fit-content;">
+                    <input type="number" class="form-control" value="5" max="10" min="1"  onkeydown="return false;" style="caret-color: transparent;">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" >Submit</button>
+                  </div>
+          
+                </div>
+                <div class="col-8">
+                  <div class="ms-3" >
+                      
+                    <h5 style="font-size: 30px;"> {{question.title}}</h5>
+                    <p style="font-size: 17px;">{{question.text}}</p>
+                    
+                    <div class="row-1" style=" font-size: 19px; ">
+                        <span >Tags:</span>
+                        {% for tag in question.tags.all %}
+                        <a href="{% url "tag" tag.name %}">{{tag.name}}</a>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </article>
+
+
+            <div class="mt-4 mb-4">  
+              <hr>
+            </div>
+            
+          {% for answer in answers%}
+            {% include "layouts/answers.html"%}
+          {%endfor%}
+
+        </div>
+            {% endblock  %}
+            {% block pagination %}
+              {% include "layouts/pagination.html" with current_url="question" page_obj=answers addititional_url=question.id%}
+
+            <div class="col-8 mt-4 mb-4">
+            <hr class="mb-4">
+              <textarea class="form-control" style="height: 200px; resize: none; font-size: 20px;" maxlength="300" placeholder="Write your answer here"></textarea>
+              <button class="btn btn-primary mt-3" style="height: 50px; width: 100px; font-size: 20px;">Answer</button>
+            </div>
+            {% endblock pagination %}
+
+
+      

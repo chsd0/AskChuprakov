@@ -1,74 +1,180 @@
-<!DOCTYPE html>
-<html lang = "eu">
-<head>
-    <meta charset="UTF-8">
-    <title>ASK ME</title>
-    <link rel="stylesheet" href="..\static\css\index.css">;
-</head>
-<body>
-<header class = "header">
-    <div class = "logo">ASK Black</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ask Chuprakov</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-lg d-flex " style="justify-content:space-between;">
+          <a class="navbar-brand p-2 col-3 ">Ask Chuprakov</a>
+          <form class="d-flex col-4" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
 
-    <div class="search">
-        <input type="text" class="search_input">
-        <button class = "search_button">ASK</button>
-    </div>
-
-    <div class="account">
-        <div>
-            <img src = "img.jpg" class = "account_img">
+          <div class="d-flex justify-content-center gap-4 col">
+            <div class="d-flex">
+              <button class="btn btn-primary" type="button" href = "/ask.html">ASK!</button>
+            </div>
+            <div class="border">
+              <img src = "..\static\pic\avatar_placeholder.jpg" class = "account_img" width = "60" height="60">
+            </div>
+            <div class="d-flex flex-column justify-content-between">
+                <div>Username</div>
+                <div>
+                <a href="/settings.html">Settings</a>
+                <a href="/logout.html">log out</a>
+            </div>
+          </div>
         </div>
-        <div class="account_content">
-            <div>BLACK</div>
-            <div>
-            <a href="/settings.html">Settings</a>
-            <a href="/logout.html">log out</a>
         </div>
-    </div>
-</header>
+      </nav>
 
-<main class = "container">
-    <div class = "heading">
-        <h1> NEw quest</h1>
-        <a href="/hot.html">YOOT</a>
-    </div>
+      <main class="container container-lg mt-3">
+        <div class = "d-flex gap-3 align-items-center">
+            <h1> New Questions</h1>
+            <a href="/hot.html">Hot questions</a>
+        </div>
 
-    <div class="content">
-        <section class="cards">
-            <article class = "card">
-                <div class="card_side">
-                    <img src="img.jpg" alt=""/>
-                    <input type="number" value="5" />
-                </div>
-                <div class="card_content">
-                    <div class="card_body">
-                        <h5><a href="/question.html"> question</a></h5>
-                        <div>
-                            nigggerasdkas
-                            sadaskndnas
-                            askdnjnsdjn
-                            korolevich
+        <div class="row gap-4">
+            <div class="col-8 ">
+                <article class="card mb-3 mt-3 h-200">
+                    <div class="row g-0">
+                      <div class="col-3 p-2">
+                        <div class="border w-150 mb-3 rounded" style="flex: auto;">
+                            <img src="..\static\pic\question_pic_placeholder.jpg" class="img-fluid rounded" style="flex: auto;">
                         </div>
-                    </div>
-                    <div class="card_footer">
-                        <a href="/question.html"> answers</a>
-                        <div class="card_tags">
+
+                        <div class="input-group flex-nowrap" >
+                          
+                          <input type="number" class="form-control" value="5" >
+                        </div>
+
+                      </div>
+                      <div class="col-md-9">
+                        <div class="card-body">
+                            
+                          <h5 class="card-title"> <a href="/question.html">Leto v derevne</a></h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        <div class="row">
+                          <a href="/question.html" class="col-4"> answers</a>
+                          <div class="col-8">
+                            
                             <span>Tags</span>
                             <a href="/tag.html">tag</a>
+                          </div>
                         </div>
+                        </div>
+                      </div>
                     </div>
-                </div>
-                
-            </article>
-            <article class="card">
-                <div class="card_side">
-                    <img src="img.jpg">
-                </div>
-            </article>
+                </article>
 
-        </section>
-    </div>
-</main>
+                <article class="card mb-3 mt-3 h-200">
+                  <div class="row g-0">
+                    <div class="col-3 p-2">
+                      <div class="border w-150 mb-3 rounded" style="flex: auto;">
+                          <img src="..\static\pic\question_pic_placeholder.jpg" class="img-fluid rounded" style="flex: auto;">
+                      </div>
 
-</body>
+                      <div class="input-group flex-nowrap" >
+                        
+                        <input type="number" class="form-control" value="5" >
+                      </div>
+
+                    </div>
+                    <div class="col-md-9">
+                      <div class="card-body">
+                          
+                        <h5 class="card-title"> <a href="/question.html">Leto v derevne</a></h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                      <div class="row">
+                        <a href="/question.html" class="col-4"> answers</a>
+                        <div class="col-8">
+                          
+                          <span>Tags</span>
+                          <a href="/tag.html">tag</a>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+              </article>
+
+              <article class="card mb-3 mt-3 h-200">
+                <div class="row g-0">
+                  <div class="col-3 p-2">
+                    <div class="border w-150 mb-3 rounded" style="flex: auto;">
+                        <img src="..\static\pic\question_pic_placeholder.jpg" class="img-fluid rounded"style="flex: auto;">
+                    </div>
+
+                    <div class="input-group flex-nowrap" >
+                      
+                      <input type="number" class="form-control" value="5" >
+                    </div>
+
+                  </div>
+                  <div class="col-md-9">
+                    <div class="card-body">
+                        
+                      <h5 class="card-title"> <a href="/question.html">Leto v derevne</a></h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    <div class="row">
+                      <a href="/question.html" class="col-4"> answers</a>
+                      <div class="col-8">
+                        
+                        <span>Tags</span>
+                        <a href="/tag.html">tag</a>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+            </article>
+            </div>
+            <div class="col-3">
+                <h3>Popular Tags</h3>
+                <div class="row">
+                    <div class="col">tag tag atg</div>
+                </div>
+                <h3 class="mt-5">Best Members</h3>
+                <div>
+                    <a href="/member.html" class="d-block">Ashot</a>
+                    <a href="/member.html" class="d-block">Ashot</a>
+                    <a href="/member.html" class="d-block">Ashot</a>
+                    <a href="/member.html" class="d-block">Ashot</a>
+                </div>
+              </div>
+        </div>
+        <nav aria-label="Page navigation example" class="mt-3">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+
+          
+          
+      </main>
+      <div class="bottom">
+        <nav class="navbar bg-body-tertiary ">
+            <div class="container text-center">
+              <div class="col-2">Navbaaar</div>
+              <div class="col-2">Navbaaar</div>
+            </div>
+          </nav>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+     crossorigin="anonymous"></script>
+  </body>
 </html>

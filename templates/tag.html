@@ -1,11 +1,10 @@
 {% extends "layouts/base.html" %}
 {% load static %}
 
-      {% block content %}
+{% block content %}
       <main class="container-fluid container-lg mt-3">
         <div class = "d-flex gap-3 align-items-center">
-            <h1> New Questions</h1>
-            <a href="{% url "hot" %}" style="font-size: 18px;">Hot questions</a>
+            <h1> Tag:  {{tag_name}}</h1>
         </div>
 
 
@@ -20,6 +19,5 @@
           
             {% endblock  %}
             {% block pagination %}
-              {% include "layouts/pagination.html" with page_obj=questions current_url="index" addititional_url=-1%}
+              {% include "layouts/pagination.html" with page_obj=questions current_url="tag" addititional_url=tag_name%}
             {% endblock pagination %}
-      

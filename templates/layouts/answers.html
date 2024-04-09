@@ -1,0 +1,36 @@
+{% load static %}
+
+<article class="card mb-3 mt-3 h-200">
+    <div class="row g-0">
+      <div class="col-3 p-2">
+        <div class="border w-150 mb-3 rounded" style="flex: auto;">
+            <img src="{% static "pic/question_pic_placeholder.jpg" %}" class="img-fluid rounded" style="flex: auto;">
+        </div>
+        <div class="input-group flex-nowrap" style="width: fit-content;">
+          <input type="number" class="form-control" value="5" max="10" min="1" onkeydown="return false;" style="caret-color: transparent;">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon1">Submit</button>
+        </div>
+
+      </div>
+      <div class="col-9">
+        <div class="card-body">
+          <p class="card-text">{{answer.text}}</p>
+        <div class="row">
+          
+           <p>
+            <div class="form-check ms-3">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Correct!
+              </label>
+            </div> 
+          </p>
+        
+          <div class="col-8">
+        
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</article>
