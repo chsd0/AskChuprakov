@@ -14,7 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         ratio = kwargs['ratio']
         fake = Faker()
-
+        users =[]
         profiles = []
         tags = []
         questions = []
@@ -24,13 +24,19 @@ class Command(BaseCommand):
             username = str(fake.first_name()) + str(i)
             password = fake.password()
             email = fake.email()
-            user = User.objects.create_user(username=username, password=password, email=email)
-            profile = Profile.objects.create(user=user, nickname=user)
-            profiles.append(profile)
+            user = User(username=username, password=password, email=email)
+            users.append(user)
 
+            profile = Profile(user=user, nickname=user)
+            profiles.append(profile)
+            
             tag_name = fake.unique.word()
-            tag = Tag.objects.create(name = tag_name)
+            tag = Tag(name = tag_name)
             tags.append(tag)
+
+        User.objects.bulk_create(users)
+        Tag.objects.bulk_create(tags)
+        Profile.objects.bulk_create(profile)
 
         for _ in range(ratio * 10):
             title = fake.sentence(nb_words=5)

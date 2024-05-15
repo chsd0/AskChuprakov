@@ -8,37 +8,44 @@
 
     <div class="row  gap-4">
         <div class="col-8 mt-2">
-            <form>
-                <p style="color: red; font-size: 20px;">Sorry, passwords don't match</p>
+            <form method="post" action="">
+              {% csrf_token %}
+                {% if form.password.errors %}
+                  <p style="color: red; font-size: 20px;">Sorry, passwords don't match</p>
+                {% elif form.username.errors %}
+                  <p style="color: red; font-size: 20px;">Sorry, this username already exists, please choose another one</p>
+                {% elif form.email.errors %}
+                  <p style="color: red; font-size: 20px;">Sorry, this email is already in use, please choose another one</p>
+                {% endif  %}
                 <div class="row mb-4">
-                  <label for="inputEmail3" class="col-sm-3 col-form-label" style="font-size: 20px;">Login</label>
+                  <label for="usernameInput" class="col-sm-3 col-form-label" style="font-size: 20px;">Login</label>
                   <div class="col-sm-5">
-                    <input class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max length is 30">
+                    <input id="usernameInput" name="username" class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max length is 30">
                   </div>
                 </div>
                 <div class="row mb-4">
-                    <label for="inputEmail3" class="col-sm-3 col-form-label" style="font-size: 20px;">Email</label>
+                    <label for="emailInput" class="col-sm-3 col-form-label" style="font-size: 20px;">Email</label>
                     <div class="col-sm-5">
-                      <input class="form-control" maxlength="30" style="font-size: 20px;" placeholder="example@mail.ru">
+                      <input id="emailInput" name="email" class="form-control" maxlength="30" style="font-size: 20px;" placeholder="example@mail.ru">
                     </div>
                   </div>
                 <div class="row mb-4">
-                  <label for="inputEmail3" class="col-sm-3 col-form-label" style="font-size: 20px;">Password</label>
+                  <label for="passwordInput" class="col-sm-3 col-form-label" style="font-size: 20px;">Password</label>
                   <div class="col-sm-5">
-                    <input type="password" class="form-control" maxlength="30" style="font-size: 20px;" placeholder="Max length is 30">
+                    <input id="passwordInput" name="password" type="password" class="form-control" maxlength="30" style="font-size: 20px;" placeholder="Max length is 30">
                   </div>
                 </div>
                 <div class="row mb-4">
-                    <label for="inputEmail3" class="col-sm-3 col-form-label" style="font-size: 20px;"> Repeat password</label>
+                    <label for="conformationPasswordInput" class="col-sm-3 col-form-label" style="font-size: 20px;"> Repeat password</label>
                     <div class="col-sm-5">
-                      <input type="password" class="form-control" maxlength="30" style="font-size: 20px;" placeholder="Max length is 30">
+                      <input id="conformationPasswordInput" name="password_conformation" type="password" class="form-control" maxlength="30" style="font-size: 20px;" placeholder="Max length is 30">
                     </div>
                   </div>
                 <div class="row mb-5">
                     <label for="formFile" class="col-sm-3 form-label " style="font-size: 20px;"> Upload avatar</label>
                     <div class="col-sm-5">
                         <input class="form-control" type="file" id="formFile">
-                        <button class="btn btn-primary mt-4 mb-5" style="height: 50px; width: 100px; font-size: 20px;">Register</button>
+                        <button type="submit" class="btn btn-primary mt-4 mb-5" style="height: 50px; width: 100px; font-size: 20px;"> Register</button>
                         <div style="margin-bottom: 44%"></div>
                     </div>
                 </div>

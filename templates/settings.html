@@ -4,35 +4,35 @@
       {% block content %}
       <main class="container-lg mt-3">
         <div class = "d-flex gap-3 align-items-center">
-            <h1> Settings: Username</h1>
+            <h1> Settings: {{user.username}}</h1>
         </div>
-        <div class="row  gap-4">
-            <div class="col-8 mt-4">
-                <form>
+        <div class="row gap-4">
+            <div class="col-8 mt-2">
+                <form method="post" action="">
+                  {% csrf_token %}
                     <div class="row mb-4">
-                      <label for="inputEmail3" class="col-sm-3 col-form-label" style="font-size: 20px;">Login</label>
+                    {% if form.username.errors %}
+                      <p style="color: red; font-size: 20px;">Sorry, this username already exists, please choose another one</p>
+                    {% elif form.email.errors %}
+                      <p style="color: red; font-size: 20px;">Sorry, this email is already in use, please choose another one</p>
+                    {% endif  %}
+                      <label for="usernameInput" class="col-sm-3 col-form-label" style="font-size: 20px;">Login</label>
                       <div class="col-sm-5">
-                        <input class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max length is 30">
-                      </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label" style="font-size: 20px;">Email</label>
-                        <div class="col-sm-5">
-                          <input class="form-control" maxlength="30" style="font-size: 20px;" placeholder="example@mail.ru">
-                        </div>
-                      </div>
-                    <div class="row mb-5">
-                      <label for="inputEmail3" class="col-sm-3 col-form-label" style="font-size: 20px;">Nickname</label>
-                      <div class="col-sm-5">
-                        <input class="form-control" maxlength="30" style="font-size: 20px;" placeholder="Max length is 30">
+                        <input id="usernameInput" name="username" class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max length is 30" value="{{user.username}}">
                       </div>
                     </div>
                     <div class="row mb-5">
-                        <label for="formFile" class="col-sm-3 form-label " style="font-size: 20px;"> Upload avatar</label>
+                      <label for="emailInput" class="col-sm-3 col-form-label" style="font-size: 20px;">Email</label>
+                      <div class="col-sm-5">
+                        <input id="emailInput" name="email" class="form-control" maxlength="30" style="font-size: 20px;" placeholder="example@mail.ru" value="{{user.email}}">
+                      </div>
+                    </div>
+                    <div class="row mb-5">
+                        <label for="formFile" class="col-sm-3 form-label " style="font-size: 20px;">Upload avatar</label>
                         <div class="col-sm-5">
                             <img src="{% static "pic/avatar_placeholder.jpg" %}" style="height: 200px; width: 250px;" class="mb-4 rounded ">
                             <input class="form-control" type="file" id="formFile">
-                            <button class="btn btn-primary mt-4 mb-5" style="height: 50px; width: 100px; font-size: 20px;">Save</button>
+                            <button type='submit' class="btn btn-primary mt-4 mb-5" style="height: 50px; width: 100px; font-size: 20px;">Save</button>
                         </div>
                     </div>
                 </form>

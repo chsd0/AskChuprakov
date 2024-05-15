@@ -34,6 +34,12 @@ class TagManager(models.Manager):
     def get_best_tags(self):
         return self.order_by('created_at')
 
+class ProfileManager(models.Manager):
+    def create_profile(self, user):
+        profile = self.model(user=user, nickname=user.username)
+        profile.save()
+        return profile
+
 class LikeQuestionManager(models.Manager):
     def get_likes_for_question(self, exactQuestion):
         return self.filter(question=exactQuestion)

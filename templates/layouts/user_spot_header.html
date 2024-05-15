@@ -1,5 +1,5 @@
 {% load static %}
-{% if user_is_logged == True%}
+{% if user.is_authenticated %}
 <div class="d-flex justify-content-center gap-4 col">
     <div class="d-flex">
       <button class="btn btn-primary" type="button" onclick = "document.location='{% url "ask"%}'"  style="height: 60px; font-size: 20px; ">ASK!</button>
@@ -8,10 +8,10 @@
       <img src = "{% static "pic/avatar_placeholder.jpg" %}" class = "account_img" width = "60" height="60">
     </div>
     <div class="d-flex flex-column justify-content-between">
-        <div style="font-size: 20px;">Username</div>
+        <div style="font-size: 20px;">{{user.username}}</div>
         <div>
         <a href="{% url "settings" %}" style="font-size: 18px;">Settings</a>
-        <a href="/logout.html" style="font-size: 18px;">log out</a>
+        <a href="{% url "logout" %}" style="font-size: 18px;">log out</a>
         </div>
     </div>
   </div>

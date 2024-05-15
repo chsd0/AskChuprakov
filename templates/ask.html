@@ -11,25 +11,31 @@
 
         <div class="row gap-4">
             <div class="col-8 mt-1">
-                <form>
+                <form method="post" action="">
+                  {% csrf_token %}
                     <div class="row mb-4">
+                      {% if form.title.errors %}
                       <p style="color: red; font-size: 20px;">Title can't be empty!</p>
-                      <label for="inputEmail3" class="col-sm-2 col-form-label" style="font-size: 20px;">Title</label>
+                      {% endif %}
+                      {% if form.text.errors %}
+                      <p style="color: red; font-size: 20px;">Text can't be empty!</p>
+                      {% endif %}
+                      <label for="titleInput" class="col-sm-2 col-form-label" style="font-size: 20px;">Title</label>
                       <div class="col-sm-10">
-                        <input class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max length is 100">
+                        <input id="titleInput" name="title" class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max length is 100">
                       </div>
                     </div>
                     <div class="row mb-4">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label" style="font-size: 20px;">Text</label>
+                        <label for="textInput" class="col-sm-2 col-form-label" style="font-size: 20px;">Text</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" style="height: 400px; resize: none; font-size: 20px;" maxlength="300" placeholder="Max length is 300"></textarea>
+                          <textarea id="textInput" name="text" class="form-control" style="height: 400px; resize: none; font-size: 20px;" maxlength="300" placeholder="Max length is 300"></textarea>
                         </div>
                       </div>
                     <div class="row mb-5">
-                      <label for="inputEmail3" class="col-sm-2 col-form-label" style="font-size: 20px;">Tags</label>
+                      <label for="tagsInput" class="col-sm-2 col-form-label" style="font-size: 20px;">Tags</label>
                       <div class="col-sm-10">
-                        <input class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max amount of tags is 5">
-                        <button class="btn btn-primary mt-4 " style="height: 50px; width: 100px; font-size: 20px;">Ask!</button>
+                        <input id="tagsInput" name="tags" class="form-control" maxlength="100" style="font-size: 20px;" placeholder="Max amount of tags is 5">
+                        <button type="submit" class="btn btn-primary mt-4" style="height: 50px; width: 100px; font-size: 20px;">Ask!</button>
                       </div>
                       
                     </div>

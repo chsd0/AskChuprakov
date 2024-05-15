@@ -15,6 +15,7 @@ class Profile(models.Model):
     image = models.ImageField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = ProfileManager()
 
 
 class Question(models.Model):

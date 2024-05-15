@@ -7,7 +7,7 @@
             <img src="{% static "pic/question_pic_placeholder.jpg" %}" class="img-fluid rounded" style="flex: auto;">
         </div>
         <div class="input-group flex-nowrap" style="width: fit-content;">
-          <input type="number" class="form-control" value="5" max="10" min="1" onkeydown="return false;" style="caret-color: transparent;">
+          <input type="number" class="form-control" value="{{answer.likes}}" onkeydown="return false;" style="caret-color: transparent;">
           <button class="btn btn-outline-secondary" type="button" id="button-addon1">Submit</button>
         </div>
 
