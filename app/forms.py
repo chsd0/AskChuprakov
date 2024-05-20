@@ -23,7 +23,8 @@ class RegisterForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     password = forms.CharField(widget=forms.PasswordInput, max_length=30, required=True)
     password_conformation = forms.CharField(widget=forms.PasswordInput, max_length=30, required=True)
-    
+    image = forms.ImageField()
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
@@ -64,13 +65,18 @@ class RegisterForm(forms.ModelForm):
     
     def save(self):
         self.cleaned_data.pop('password_conformation')
+        image = self.cleaned_data.get('image')
+        self.cleaned_data.pop('image')
         user = User.objects.create_user(**self.cleaned_data)
-        Profile.objects.create_profile(user=user)
+        profile = Profile.objects.create_profile(user=user)
+        profile.image = image
+        profile.save()
         return user
     
 class SettingsForm(forms.ModelForm):
     username = forms.CharField(max_length=30)
     email = forms.EmailField()
+    image = forms.ImageField()
 
     class Meta:
         model = User
@@ -88,9 +94,17 @@ class SettingsForm(forms.ModelForm):
             self.add_error('email', 'This email is already in use, please choose another one')
         return email
     
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        profile = Profile.objects.filter(user=self.instance).get()
+        profile.image = image
+        profile.save()
+        return image
+    
     def clean(self):
         self.clean_username()
         self.clean_email()
+        self.clean_image()
         cleaned_data = super().clean()
         return cleaned_data
     

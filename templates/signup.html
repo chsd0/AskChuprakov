@@ -8,7 +8,7 @@
 
     <div class="row  gap-4">
         <div class="col-8 mt-2">
-            <form method="post" action="">
+            <form method="post" action="" enctype="multipart/form-data">
               {% csrf_token %}
                 {% if form.password.errors %}
                   <p style="color: red; font-size: 20px;">Sorry, passwords don't match</p>
@@ -42,9 +42,9 @@
                     </div>
                   </div>
                 <div class="row mb-5">
-                    <label for="formFile" class="col-sm-3 form-label " style="font-size: 20px;"> Upload avatar</label>
+                    <label for="imageInput" class="col-sm-3 form-label " style="font-size: 20px;"> Upload avatar</label>
                     <div class="col-sm-5">
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" type="file" id="imageInput" name="image">
                         <button type="submit" class="btn btn-primary mt-4 mb-5" style="height: 50px; width: 100px; font-size: 20px;"> Register</button>
                         <div style="margin-bottom: 44%"></div>
                     </div>

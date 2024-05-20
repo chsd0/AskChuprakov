@@ -1,14 +1,18 @@
 {% load static %}
 
-<article class="card mb-3 mt-3 h-200">
+<article class="card mb-3 mt-3 h-200" data-question-id="{{question.id}}">
     <div class="row g-0">
       <div class="col-3 p-2">
         <div class="border mb-3 rounded" >
+          {% if question.author.image.url %}
+            <img src="{{ question.author.image.url }}" class="img-fluid rounded" >
+          {% else %}
             <img src="{% static "pic/question_pic_placeholder.jpg" %}" class="img-fluid rounded" >
+          {% endif %}
         </div>
-        <div class="input-group " style="width: fit-content;">
-          <input type="number" class="form-control" value="{{question.likes}}" onkeydown="return false;" style="caret-color: transparent;">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon1">Submit</button>
+        <div class="input-group" style="width: fit-content;">
+          <input type="text" class="form-control LikeCount" value="{{question.likes}}" onkeydown="return false;" style="caret-color: transparent;" id="LikeCount">
+          <button class="btn btn-outline-secondary LikeButton" type="button" id="button-addon1">Like</button>
         </div>
 
       </div>

@@ -13,4 +13,10 @@ urlpatterns = [
     path('login/', views.Login, name="login"),
     path('logout/', views.Logout, name="logout"),
     path('signup/', views.signup, name="signup"),
+    path('<question_id>/like_async', views.like_async, name="like_async"),
+    path('tag/<question_id>/like_async', views.like_async, name="like_async"),
+    path('hot/<question_id>/like_async', views.like_async, name="like_async"),
+    path('questions/<question_id>/like_async', views.like_async, name="like_async"),
+    path('questions/<answer_id>/like_async_answer', views.like_async_answer, name="like_async_answer"),
+    path('questions/<answer_id>/correct_async', views.correct_async, name="correct_async"),
 ]

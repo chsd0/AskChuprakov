@@ -3,17 +3,17 @@
 
       {% block content %}
       <main class="container-fluid container-lg mt-3">
-        <div class="row gap-4">
+        <div class="row gap-4 question_detail" data-question-id="{{question.id}}">
           <div class="col-8">
             <article class="mb-3 mt-3">
               <div class="row g-0">
                 <div class="col-4 p-2">
                   <div class="border mb-3 rounded">
-                      <img src="{% static "pic/question_pic_placeholder.jpg" %}" class="img-fluid rounded" style="flex: auto;">
+                      <img src="{{ question.author.image.url }}" class="img-fluid rounded" style="flex: auto;">
                   </div>
-                  <div class="input-group " style="width: fit-content;">
-                    <input type="number" class="form-control" value="{{question.likes}}"  onkeydown="return false;" style="caret-color: transparent;">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon1" >Submit</button>
+                  <div class="input-group" style="width:100%;">
+                    <input type="text" class="form-control LikeCount" value="{{question.likes}}" onkeydown="return false;" style="caret-color: transparent;" id="LikeCount">
+                    <button class="btn btn-outline-secondary LikeButton" type="button" id="button-addon1">Like</button>
                   </div>
                 </div>
                 <div class="col-8">
@@ -39,7 +39,7 @@
             
           {% for answer in answers%}
             {% include "layouts/answers.html"%}
-          {%endfor%}
+          {% endfor %}
           {% endif %}
         </div>
             {% endblock content %}

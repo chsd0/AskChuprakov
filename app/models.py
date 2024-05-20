@@ -12,7 +12,7 @@ class Tag(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(default=user.name ,max_length=30)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True, default='static/pic/aph.jpg', upload_to='static/pic')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ProfileManager()
