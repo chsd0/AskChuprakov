@@ -1,5 +1,6 @@
 from django.http import HttpResponse, JsonResponse, QueryDict
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import MultipleObjectsReturned
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
@@ -154,7 +155,11 @@ def like_async(request, question_id):
     body = json.loads(request.body)
     question = Question.objects.filter(id=question_id).get()
     profile = Profile.objects.filter(user=request.user).get()
-    question_like, question_like_created = LikeQuestion.objects.get_or_create(question=question, author=profile)
+    try:
+        question_like, question_like_created = LikeQuestion.objects.get_or_create(question=question, author=profile)
+    except LikeQuestion.MultipleObjectsReturned:
+        question_like = LikeQuestion.objects.filter(question=question, author=profile).first()
+        question_like_created = 0
 
     if not question_like_created:
         question_like.delete()

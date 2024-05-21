@@ -1,3 +1,5 @@
 askme_venv/
 db.sqlite3
 .idea/
+.venv/
+shpora

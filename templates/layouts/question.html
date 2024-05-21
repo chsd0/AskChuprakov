@@ -5,7 +5,7 @@
       <div class="col-3 p-2">
         <div class="border mb-3 rounded" >
           {% if question.author.image.url %}
-            <img src="{{ question.author.image.url }}" class="img-fluid rounded" >
+            <img src="{{ question.author.image.url }}" class="img-fluid rounded">
           {% else %}
             <img src="{% static "pic/question_pic_placeholder.jpg" %}" class="img-fluid rounded" >
           {% endif %}
