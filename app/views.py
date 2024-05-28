@@ -27,6 +27,7 @@ def index(request):
     page_obj = paginate(Question.objects.order_by('-created_at'), request.GET.get('page', 1))
     return render(request, "index.html", {"questions": page_obj, "best_tags": best_tags, "profilePic": profilePic})
 
+@csrf_protect
 @login_required(login_url="login")
 def ask(request):
     if request.user.is_authenticated:
@@ -53,6 +54,7 @@ def hot(request):
     page_obj = paginate(Question.objects.get_hot_questions(), request.GET.get('page', 1))
     return render(request, "hot.html", {"questions":page_obj, "best_tags": best_tags, "profilePic": profilePic})
 
+@csrf_protect
 def question(request, question_id):
     if request.user.is_authenticated:
         profilePic = Profile.objects.filter(user=request.user).get().image
@@ -84,6 +86,7 @@ def tag(request, tag_name):
     page_obj = paginate(QUESTIONS ,request.GET.get('page', 1))
     return render(request, "tag.html", {"questions": page_obj, "tag_name": tag_name, "best_tags": best_tags, "profilePic": profilePic})
 
+@csrf_protect
 @login_required(login_url="login")
 def settings(request):
     if request.user.is_authenticated:
@@ -100,6 +103,7 @@ def settings(request):
             return redirect(reverse('settings'))
     return render(request, "settings.html", {"best_tags": best_tags, "form": settings_form, "profilePic": profilePic})
 
+@csrf_protect
 def Login(request):
     if request.method == 'GET':
         login_form = LoginForm()
@@ -117,6 +121,7 @@ def Login(request):
                 
     return render(request, "login.html", {"best_tags": best_tags, "form": login_form})
 
+@csrf_protect
 def signup(request):
     if request.method == 'GET':
         register_form = RegisterForm()
@@ -134,14 +139,15 @@ def signup(request):
 
     return render(request, "signup.html", {"best_tags": best_tags, "form": register_form})
 
+@csrf_protect
 @login_required(login_url="login")
 def Logout(request):
     logout(request)
     return redirect(reverse('login'))
 
 def paginate(obj_list, page, per_page=5):
-    page = int(float(page)) #handle PageNotAnInteger
-    if(len(obj_list) < 1): #handle EmptyPage
+    page = int(float(page))
+    if(len(obj_list) < 1):
         return 
     if(page < 1):
         page = 1
@@ -152,21 +158,8 @@ def paginate(obj_list, page, per_page=5):
 @require_http_methods(["POST"])
 @csrf_protect
 def like_async(request, question_id):
-    body = json.loads(request.body)
-    question = Question.objects.filter(id=question_id).get()
-    profile = Profile.objects.filter(user=request.user).get()
-    try:
-        question_like, question_like_created = LikeQuestion.objects.get_or_create(question=question, author=profile)
-    except LikeQuestion.MultipleObjectsReturned:
-        question_like = LikeQuestion.objects.filter(question=question, author=profile).first()
-        question_like_created = 0
 
-    if not question_like_created:
-        question_like.delete()
-    
-    body['likes_count'] = LikeQuestion.objects.filter(question=question).count()
-    question.likes = LikeQuestion.objects.filter(question=question).count()
-    question.save()
+    body = LikeQuestion.objects.like_async(request, question_id)
 
     return JsonResponse(body)
 
@@ -174,17 +167,8 @@ def like_async(request, question_id):
 @require_http_methods(["POST"])
 @csrf_protect
 def like_async_answer(request, answer_id):
-    body = json.loads(request.body)
-    answer = Answer.objects.filter(id=answer_id).get()
-    profile = Profile.objects.filter(user=request.user).get()
-    answer_like, answer_like_created = LikeAnswer.objects.get_or_create(answer=answer, author=profile)
 
-    if not answer_like_created:
-        answer_like.delete()
-    
-    body['likes_count'] = LikeAnswer.objects.filter(answer=answer).count()
-    answer.likes = LikeAnswer.objects.filter(answer=answer).count()
-    answer.save()
+    body = LikeAnswer.objects.like_async(request, answer_id)
 
     return JsonResponse(body)
 
@@ -192,17 +176,7 @@ def like_async_answer(request, answer_id):
 @require_http_methods(["POST"])
 @csrf_protect
 def correct_async(request, answer_id):
-    body = json.loads(request.body)
-    answer = Answer.objects.filter(id=answer_id).get()
-    profile = Profile.objects.filter(user=request.user).get()
-    correct = answer.correct
 
-    if correct:
-        answer.correct = False
-    else:
-        answer.correct = True
-    answer.save()
+    body = Answer.objects.correct_async(request, answer_id)
     
-    body['correct'] = answer.correct
-
     return JsonResponse(body)

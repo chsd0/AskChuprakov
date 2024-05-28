@@ -97,8 +97,9 @@ class SettingsForm(forms.ModelForm):
     def clean_image(self):
         image = self.cleaned_data.get('image')
         profile = Profile.objects.filter(user=self.instance).get()
-        profile.image = image
-        profile.save()
+        if image is not None:
+            profile.image = image
+            profile.save()
         return image
     
     def clean(self):
